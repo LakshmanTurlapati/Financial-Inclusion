@@ -1,0 +1,37 @@
+/* sidebar.component.css */
+
+.logo {
+    background-color: #333; /* Change to your desired background color */
+}
+
+.logo a {
+    color: #fff; /* Change to your desired text color */
+}
+
+.sidebar-wrapper {
+    background-color: #2c2c2c; /* Change to your desired sidebar background color */
+}
+
+.sidebar-wrapper .nav li a {
+    color: #b8b8b8; /* Change to your desired link color */
+}
+
+.sidebar-wrapper .nav li a:hover,
+.sidebar-wrapper .nav li a:focus {
+    background-color: #444; /* Change to your desired hover color */
+    color: #fff; /* Change to your desired text color on hover */
+}
+
+.sidebar-wrapper .nav li.active a {
+    background-color: #1a1a1a; /* Change to your desired active link background color */
+    color: #fff; /* Change to your desired active link text color */
+}
+
+.sidebar-wrapper .nav i {
+    color: #b8b8b8; /* Change to your desired icon color */
+}
+
+.sidebar-wrapper .nav i:hover,
+.sidebar-wrapper .nav i:focus {
+    color: #fff; /* Change to your desired icon color on hover */
+}

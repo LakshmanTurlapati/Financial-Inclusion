@@ -1,0 +1,95 @@
+<div class="panel-header panel-header-lg">
+  <canvas baseChart id="bigDashboardChart"
+          [datasets]="lineBigDashboardChartData"
+          [labels]="lineBigDashboardChartLabels"
+          [colors]="lineBigDashboardChartColors"
+          [options]="lineBigDashboardChartOptions"
+          [chartType]="lineBigDashboardChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-lg-8" *ngIf="!dataFetched">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h4 class="card-title">Credit Score Generation</h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="aadharInput">Please enter your Aadhar</label>
+              <input type="text" class="form-control" id="aadharInput" [(ngModel)]="aadhar" name="aadhar" placeholder="Enter Aadhar" required>
+            </div>
+            <div class="text-center mb-2">or</div>
+            <div class="form-group">
+              <label for="panInput">PAN (optional)</label>
+              <input type="text" class="form-control" id="panInput" [(ngModel)]="pan" name="pan" placeholder="Enter PAN">
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary">Generate Credit Score</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8" *ngIf="dataFetched">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h4 class="card-title">Credit Score Details</h4>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <p><strong>Aadhar:</strong> {{ fetchedData.aadhar }}</p>
+            <p><strong>PAN:</strong> {{ fetchedData.Pan }}</p>
+          </div>
+          <div class="info-row">
+            <p><strong>Average Monthly Balance:</strong> {{ fetchedData.AverageMonthlyBalance | currency:'INR':'symbol' }}</p>
+            <p><strong>Monthly Expenses:</strong> {{ fetchedData.AverageMonthlyExpenditure | currency:'INR':'symbol' }}</p>
+          </div>
+          <div class="info-row">
+            <p><strong>Monthly Income:</strong> {{ fetchedData.AverageMonthlyIncome | currency:'INR':'symbol' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6" *ngIf="dataFetched">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h4 class="card-title">Credit Score</h4>
+        </div>
+        <div class="card-body">
+          <canvas id="creditScoreGauge" width="250" height="250"></canvas>
+          <div class="text-center mt-3">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#optimizeModal">Optimize Your Score</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="optimizeModal" tabindex="-1" role="dialog" aria-labelledby="optimizeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="optimizeModalLabel">Optimize Your Credit Score</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You'll need to take a Psychometric test and upload utility bills or upload Credit Endorsement.</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" (click)="navigateAndClose('/icons')">Take Test</button>
+        <button type="button" class="btn btn-secondary mx-2" (click)="navigateAndClose('/maps')">Utility</button>
+        <button type="button" class="btn btn-secondary mx-2" (click)="navigateAndClose('/notifications')">Endorse</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

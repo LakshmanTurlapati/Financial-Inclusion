@@ -1,0 +1,14 @@
+/* icons.component.css */
+
+/* Style the radio button labels */
+ul li label {
+    font-weight: normal; /* Adjust font weight to normal */
+    color: #333; /* Adjust color to a darker shade */
+    display: flex;
+    align-items: center;
+  }
+  
+  ul li label input[type="radio"] {
+    margin-right: 10px; /* Add some space between the radio button and the text */
+  }
+  

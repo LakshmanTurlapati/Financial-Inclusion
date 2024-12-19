@@ -1,0 +1,52 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card" *ngIf="!testStarted">
+        <div class="card-header">
+          <h5 class="title" style="text-transform: none; font-size: 1.2em;">Psychometric Test</h5>
+          <p class="category" style="text-transform: none; font-size: 1.2em;">Please read the instructions carefully before starting the test.</p>
+        </div>
+        <div class="card-body">
+          <div class="intro">
+            <h6 style="font-size: 1.2em; text-transform: none;">Introduction</h6>
+            <p style="font-size: 1.2em;">This test is designed to evaluate your psychological traits and abilities. The test consists of 10 questions, and you will be shown one question at a time. Make sure to answer honestly and to the best of your ability.</p>
+          </div>
+          <div class="rules">
+            <h6 style="font-size: 1.2em; text-transform: none;">Rules</h6>
+            <ul style="font-size: 1.2em;">
+              <li>Each question is mandatory.</li>
+              <li>You cannot go back to the previous question once you move forward.</li>
+              <li>Answer each question honestly.</li>
+              <li>You will have a limited time to answer each question.</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary" (click)="startTest()">Start Test</button>
+        </div>
+      </div>
+      <div class="card" *ngIf="testStarted">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="title" style="text-transform: none; font-size: 1.2em;">Psychometric Test </h5>
+          <span *ngIf="currentQuestionIndex < questions.length" style="font-size: 1.2em;">Question {{currentQuestionIndex + 1}} of {{questions.length}}</span>
+        </div>
+        <div class="card-body" style="font-size: 1.2em;">
+          <div *ngIf="currentQuestionIndex < questions.length">
+            <p>{{questions[currentQuestionIndex].question}}</p>
+            <ul style="list-style-type: none; padding: 0;">
+              <li *ngFor="let option of questions[currentQuestionIndex].options">
+                <label>
+                  <input type="radio" name="option" (change)="selectOption(option)" /> {{option}}
+                </label>
+              </li>
+            </ul>
+            <button class="btn btn-primary" (click)="nextQuestion()">Next</button>
+          </div>
+          <div *ngIf="currentQuestionIndex >= questions.length">
+            <p>Thank you for completing the test!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
